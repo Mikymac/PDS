@@ -9,9 +9,10 @@ namespace Assignment3Test
 {
     class Program
     {
+        // Function to create a simple animation of the dice rolling. - McClay - 20.11.2017
         static void Boston()
         {
-            Dice(Roller(), 10);
+            Dice(Roller(), 10); // Repeated funcion calls of Dice and Roller functions including a thread.sleep to create the animation effect. - Worth changing into a loop with changing delays. - McClay - 20.11.2017
             Dice(0, 5);
             Dice(Roller(), 10);
             Dice(0, 5);
@@ -34,9 +35,18 @@ namespace Assignment3Test
             Dice(Roller(), 900);
         }
 
+        // Function called to draw the menu. - McClay - 24.11.2017
+        static void Menu()
+        {
+
+        }
+
+        // Main function. Calls required functions when needed. In constant state of change as Methods and Classes are created. - McClay
         static void Main()
         {
 
+            Menu();
+            
             Boston();
             Console.ReadKey();
             Boston();
@@ -57,12 +67,16 @@ namespace Assignment3Test
                  catch { break; }*/
         }
 
+        // Function called to return the random number required for Dice(). - McClay - 17.11.2017
+        // Creates a new Random iteration every time it is called to create a more random sequence of numbers. Less efficient however. - McClay - 20.11.2017
         static int Roller()
         {
             Random dice = new Random();
             return dice.Next(1, 7);
         }
 
+        // Function called to write out the dice on the console. - McClay - 17.11.2017
+        // Requires 1-6 numeric input as well as delay in milliseconds. - McClay - 20.11.2017
         static void Dice(int print, int delay)
         {
             string point1 = " ";
@@ -72,8 +86,9 @@ namespace Assignment3Test
             string point5 = " ";
             string point6 = " ";
             string point7 = " ";
-            
-            switch (print)
+
+            // Switch used to define the state of each point on the dice. Initialised as " " above. Changed to "X" based on the switch case. - McClay - 17.11.2017
+            switch (print) 
             {
 
                 case 1:
@@ -111,8 +126,9 @@ namespace Assignment3Test
                     break;
             }
 
-            Console.Clear();
-            //Console.SetCursorPosition(0, 0);
+            //Console.Clear();
+            Console.SetCursorPosition(0, 0);
+            // Series of WriteLines substitute each point on the dice with the relevant variable. A space is used for no dot to preserve the width of each line. - McClay - 17.11.2017
             Console.WriteLine("---------------");
             Console.WriteLine("|             |");
             Console.WriteLine("|   {0}     {1}   |", point1, point2);
