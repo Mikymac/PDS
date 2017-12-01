@@ -9,10 +9,27 @@ namespace Assignment3Test
 {
     class Program
     {
-        // Function to create a simple animation of the dice rolling. - McClay - 20.11.2017
-        static void Boston()
+        static void BostonR1(int x = 0, int y = 0)
         {
-            Dice(Roller(), 10); // Repeated funcion calls of Dice and Roller functions including a thread.sleep to create the animation effect. - Worth changing into a loop with changing delays. - McClay - 20.11.2017
+            int[] delays = { 10, 10, 10, 20, 30, 80, 150, 200, 400, 500, 900 };
+
+            for (int i = 0; i < delays.Length; i++)
+            {
+                Dice(0, 5, y, x);
+                Dice(Roller(), delays[i], y, x);
+                Dice(0, 5, y, x+17);
+                Dice(Roller(), delays[i], y, x+17);
+                Dice(0, 5, y, x+34);
+                Dice(Roller(), delays[i], y, x+34);
+            }
+        
+        }
+
+
+        // Function to create a simple animation of the dice rolling. - McClay - 20.11.2017
+        static void Boston(int x = 0, int y = 0)
+        {
+            /*Dice(Roller(), 10); // Repeated funcion calls of Dice and Roller functions including a thread.sleep to create the animation effect. - Worth changing into a loop with changing delays. - McClay - 20.11.2017
             Dice(0, 5);
             Dice(Roller(), 10);
             Dice(0, 5);
@@ -32,21 +49,37 @@ namespace Assignment3Test
             Dice(0, 5);
             Dice(Roller(), 500);
             Dice(0, 5);
-            Dice(Roller(), 900);
+            Dice(Roller(), 900);*/
+
+        //Changed the 21 lines of code into a loop. Based on array delivering the delay timings. - McClay - 01/12/2017
+        int[] delays =  { 10, 10, 10, 20, 30, 80, 150, 200, 400, 500, 900 };
+
+            for (int i = 0; i < delays.Length; i++)
+            {
+                Dice(0, 5,y,x);
+                Dice(Roller(), delays[i],y,x);
+            }
         }
 
         // Function called to draw the menu. - McClay - 24.11.2017
         static void Menu()
         {
-
+            Boston();
+            Boston(17, 0);
+            Boston(34, 0);
         }
 
         // Main function. Calls required functions when needed. In constant state of change as Methods and Classes are created. - McClay
         static void Main()
         {
 
-            Menu();
+
+
+            Console.Read();
+            BostonR1(); // Attempting to use Asynchronous await task.delay() Not working properly yet. 01,12,2071
+            Console.Read();
             
+            /*
             Boston();
             Console.ReadKey();
             Boston();
@@ -58,13 +91,16 @@ namespace Assignment3Test
             Boston();
             Console.ReadKey();
             Boston();
-            Console.ReadKey();
+            Console.ReadKey();*/
 
 
 
             /* while (true)
                  try { Dice(int.Parse(Console.ReadLine())); }
                  catch { break; }*/
+
+            Console.Write("boop");
+            Console.ReadKey();
         }
 
         // Function called to return the random number required for Dice(). - McClay - 17.11.2017
@@ -77,8 +113,8 @@ namespace Assignment3Test
 
         // Function called to write out the dice on the console. - McClay - 17.11.2017
         // Requires 1-6 numeric input as well as delay in milliseconds. - McClay - 20.11.2017
-        static void Dice(int print, int delay)
-        {
+        static async void Dice(int print, int delay, int Y, int X)
+        { 
             string point1 = " ";
             string point2 = " ";
             string point3 = " ";
@@ -127,19 +163,28 @@ namespace Assignment3Test
             }
 
             //Console.Clear();
-            Console.SetCursorPosition(0, 0);
+            Console.SetCursorPosition(X, Y);
             // Series of WriteLines substitute each point on the dice with the relevant variable. A space is used for no dot to preserve the width of each line. - McClay - 17.11.2017
             Console.WriteLine("---------------");
+            Console.SetCursorPosition(X, Console.CursorTop); // Added a line after each line of the dice to reset the cursor to the corrext left value. WriteLine resets back to 0 every time. - McClay 01/12/2017
             Console.WriteLine("|             |");
+            Console.SetCursorPosition(X, Console.CursorTop);
             Console.WriteLine("|   {0}     {1}   |", point1, point2);
+            Console.SetCursorPosition(X, Console.CursorTop);
             Console.WriteLine("|             |");
+            Console.SetCursorPosition(X, Console.CursorTop);
             Console.WriteLine("|   {0}  {1}  {2}   |", point3, point4, point5);
+            Console.SetCursorPosition(X, Console.CursorTop);
             Console.WriteLine("|             |");
+            Console.SetCursorPosition(X, Console.CursorTop);
             Console.WriteLine("|   {0}     {1}   |", point6, point7);
+            Console.SetCursorPosition(X, Console.CursorTop);
             Console.WriteLine("|             |");
+            Console.SetCursorPosition(X, Console.CursorTop);
             Console.WriteLine("---------------");
 
-            Thread.Sleep(delay);
+            await Task.Delay(delay*1000);
+            //Thread.Sleep(delay);
 
         }     
 

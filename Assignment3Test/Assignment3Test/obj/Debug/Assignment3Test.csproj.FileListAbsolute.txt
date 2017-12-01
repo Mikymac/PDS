@@ -16,3 +16,4 @@ C:\Users\user\Desktop\TmpGit\PDS\Assignment3Test\Assignment3Test\obj\Debug\Assig
 C:\Users\user\Desktop\TmpGit\PDS\Assignment3Test\Assignment3Test\bin\Debug\Assignment3Test.exe
 C:\Users\user\Desktop\TmpGit\PDS\Assignment3Test\Assignment3Test\bin\Debug\Assignment3Test.pdb
 C:\Users\user\Desktop\TmpGit\PDS\Assignment3Test\Assignment3Test\obj\Debug\Assignment3Test.csprojResolveAssemblyReference.cache
+C:\Users\user\Desktop\tmpgit\PDS\Assignment3Test\Assignment3Test\obj\Debug\Assignment3Test.csproj.CoreCompileInputs.cache
